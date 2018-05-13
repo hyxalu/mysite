@@ -25,7 +25,7 @@ SECRET_KEY = 'aq%cnpy6vq-e=b$zq6$--^1=1edse6(dn2w1854_*8)a6q^md0'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['www.harmonie-maurage.be']
+ALLOWED_HOSTS = ['www.harmonie-maurage.be', 'localhost']
 
 
 # Application definition
