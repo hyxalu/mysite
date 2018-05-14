@@ -30,6 +30,7 @@ else:
 
 ALLOWED_HOSTS = []
 if not DEBUG:
+    SECURE_SSL_REDIRECT = True
     ALLOWED_HOSTS += ['www.harmonie-maurage.be',]
     CSRF_COOKIE_SECURE = True
     SESSION_COOKIE_SECURE = True
