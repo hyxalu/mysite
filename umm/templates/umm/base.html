@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Harmonie de Maurage{% endblock %}</title>
+    {% load staticfiles %}
+    <link rel="icon" type="image/png" sizes="32x32" href="{%  static 'umm/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{%  static 'umm/favicon-16x16.png' %}">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <link href='//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="{% static 'umm/umm.css' %}"/>
+</head>
+<body>
+</body>
+<div class="container">
+    <div class="page-header">
+        PAGE-HEADER
+    </div>
+{% block body %}
+{% endblock %}
+</div>
+</html>
