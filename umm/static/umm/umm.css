@@ -1,3 +1,26 @@
-body {
-  padding-top: 4rem;
+a.umm-logo img {
+    width: auto;
+    height: 100%;
+}
+
+.umm-bg {
+    background-color: rgb(197, 198, 255);
+}
+
+@media (max-width: 767px) {
+    a.umm-logo {
+         height: 64px;
+    }
+    body {
+        padding-top: 128px;
+    }
+}
+
+@media (min-width: 768px) {
+    a.umm-logo {
+         height: 128px;
+    }
+    body {
+        padding-top: 192px;
+    }
 }

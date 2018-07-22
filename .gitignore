@@ -1,6 +1,7 @@
 *.pyc
 *.swp
 __pycache__
+.idea
 mysite_env
 db.sqlite3
 migrations

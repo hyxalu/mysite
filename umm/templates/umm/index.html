@@ -1,22 +1,14 @@
 {% extends 'umm/base.html' %}
 
 {% block body %}
-<div class="row">
-  <div class="col-md-4">
-    <h2>
-      Test
-    </h2>
-  </div>
-  <div class="col-md-4">
-    <h2>
-      Test
-    </h2>
-  </div>
-  <div class="col-md-4">
-    <h2>
-      Test
-    </h2>
-
-  </div>
-</div>
+{% if future_events %}
+  Voici la liste des événements à venir :
+    <ul>
+    {% for event in future_events %}
+        <li><a href="/events/{{ event.id }}/">{{ event.title }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>Il n'y a pas de futurs événements prévus pour le moment.</p>
+{% endif %}
 {% endblock %}
