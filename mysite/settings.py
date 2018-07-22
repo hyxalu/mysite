@@ -28,13 +28,19 @@ if os.environ.get('DJANGO_DEBUG', "True") == "False":
 else:
     DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 if not DEBUG:
     SECURE_SSL_REDIRECT = True
-    ALLOWED_HOSTS += ['www.harmonie-maurage.be',]
+    ALLOWED_HOSTS = ['www.harmonie-maurage.be',]
     CSRF_COOKIE_SECURE = True
     SESSION_COOKIE_SECURE = True
 
+EMAIL_SUBJECT_PREFIX = "[UMM]"
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_HOST_USER = "harmonie.maurage@gmail.com"
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_PASSWORD = os.environ.get('DJANGO_EMAIL_PW', "")
 
 # Application definition
 
@@ -128,3 +134,5 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
+
+
