@@ -2,13 +2,24 @@
 
 {% block body %}
 {% if future_events %}
-  Voici la liste des événements à venir :
-    <ul>
+<h2>Événements à venir</h2>
+<div class="event-container">
     {% for event in future_events %}
-        <li><a href="/events/{{ event.id }}/">{{ event.title }}</a></li>
+    <div class="event-item">
+        <div class="event-date">
+            <i class="fa fa-calendar-alt" style="color:grey;"></i>
+            {{ event.date }}<br>  <span></span>{% if event.time_begin %} <i class="fa fa-clock" style="color:grey;"></i> {{event.time_begin }} {% endif %}
+        </div>
+        <div class="event-title">
+            {{ event.title }}<br>
+            {{ event.place.title }}
+        </div>
+        <div class="event-place">
+            <i class="fa fa-map-marker-alt" style="color:grey;"></i>
+            {{ event.place.town }}
+        </div>
+    </div>
     {% endfor %}
-    </ul>
-{% else %}
-    <p>Il n'y a pas de futurs événements prévus pour le moment.</p>
+</div>
 {% endif %}
 {% endblock %}

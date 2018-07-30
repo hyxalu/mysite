@@ -1,20 +1,27 @@
 from django.db import models
 
 # Create your models here.
-class Song(models.Model):
+class Place(models.Model):
     """
-    Model representing a piece of music
+    Model representing a location
     """
-    title = models.CharField(max_length=512, help_text="Entrez le titre du morceau")
+    title = models.CharField(max_length=512, help_text="Entrez le nom de l'endroit")
 
-    author = models.CharField(max_length=512, help_text="Entrez l'auteur du morceau")
+    country = models.CharField(max_length=512, help_text="Entrez le nom du pays", blank=True)
 
+    town = models.CharField(max_length=512, help_text="Entrez le nom de la ville")
+
+    postCode = models.PositiveSmallIntegerField("Entrez le code postal", blank=True)
+
+    address = models.CharField(max_length=512, help_text="Entrez l'adresse", blank=True)
+
+    note = models.CharField(max_length=4096, help_text="Entrez une note (une explication)", blank=True)
 
     def __str__(self):
         """
-        String for representing the Song Model object
+        String for representing the Place Model object
         """
-        return self.title + " (" + self.author + ")"
+        return self.title
 
 
 class Evenement(models.Model):
@@ -25,11 +32,16 @@ class Evenement(models.Model):
 
     date = models.DateField(help_text="Date de l'événement")
 
-    time_begin = models.TimeField(help_text="Heure de l'événement", null=True, blank=True)
+    time_begin = models.TimeField(help_text="Heure de l'événement", blank=True, null=True)
 
-    place = models.CharField(max_length=512, help_text="Entrez le lieu de l'événement")
+    place = models.ForeignKey(
+        Place,
+        models.SET_NULL,
+        blank=True,
+        null=True,
+    )
 
-    time_arrival = models.TimeField(help_text="Heure d'arrivée des musiciens", null=True, blank=True)
+    time_arrival = models.TimeField(help_text="Heure d'arrivée des musiciens", blank=True, null=True)
     CLASSIC = 'CL'
     CASUAL = 'CA'
     OUTFIT_CHOICES = (
@@ -42,8 +54,6 @@ class Evenement(models.Model):
         choices=OUTFIT_CHOICES,
         default=CLASSIC,
     )
-
-    songs = models.ManyToManyField(Song, blank=True)
 
     def __str__(self):
         """
