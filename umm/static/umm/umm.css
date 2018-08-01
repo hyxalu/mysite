@@ -1,27 +1,59 @@
-
-body,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-.h1,
-.h2,
-.h3,
-.h4,
-.h5,
-.h6 {
+body {
     font-family: 'Righteous', cursive !important;
+    margin: 0;
 }
 
+.umm-bg {
+    background-color: rgb(214, 214, 214);
+}
+
+@media screen and (max-width: 769px) {
+    .container {
+        padding: 1rem 2rem 1rem 2rem
+    }
+    body .navbar {
+        flex-flow: column nowrap;
+        justify-content: space-around;
+        padding: 1em;
+    }
+
+    .nav-item {
+        flex-basis: 1.75rem;
+    }
+}
+@media screen and (min-width: 769px) {
+    .container {
+        padding: 1rem 4rem 1rem 4rem
+    }
+}
+@media screen and (min-width: 993px) {
+    .container {
+        padding: 1rem 7rem 1rem 7rem
+    }
+}
+@media screen and (min-width: 1200px) {
+    .container {
+        padding: 1rem 10rem 1rem 10rem;
+    }
+}
+
+nav {
+    margin: 0;
+    padding: 0;
+}
+
+.navbar {
+    padding: 1em;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+}
 
 .event-container {
     display: grid;
     grid-gap: 20px;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 }
-
 .event-item
 {
     /*Appearance*/
@@ -58,28 +90,17 @@ h6,
 }
 
 a.umm-logo img {
+    display:none;
     width: auto;
     height: 100%;
 }
 
-.umm-bg {
-    background-color: rgb(214, 214, 214);
+.fieldWrapper {
+    margin: 20px auto 20px auto;
 }
-
-@media (max-width: 767px) {
-    a.umm-logo {
-         height: 64px;
-    }
-    body {
-        padding-top: 128px;
-    }
+.fieldWrapper>div>input {
+    width: 100%;
 }
-
-@media (min-width: 768px) {
-    a.umm-logo {
-         height: 128px;
-    }
-    body {
-        padding-top: 192px;
-    }
+.fieldWrapper>div>textarea {
+    width: 100%;
 }

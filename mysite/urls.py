@@ -18,7 +18,8 @@ from django.urls import include, path
 from django.views.generic import RedirectView
 
 urlpatterns = [
-    path('umm/', include('umm.urls')),
+    #path('umm/', include('umm.urls')),
     path('admin/', admin.site.urls),
-    path('', RedirectView.as_view(url='/umm/')),
+    #path('', RedirectView.as_view(url='/umm/')),
+    path('', include('umm.urls')),
 ]
