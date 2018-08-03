@@ -18,9 +18,12 @@
 </head>
 <body>
 <div class="collapsible-menu">
-    <input type="checkbox" id="menu">
-    <label for="menu">Menu</label>
-    <div class="nav-bar umm-bg">
+    <div class="menu" onclick="myFunction(this)">
+        <div class="bar1"></div>
+        <div class="bar2"></div>
+        <div class="bar3"></div>
+    </div>
+    <div class="nav-bar umm-bg change">
         <div class="nav-item active">
             <a class="nav-link" href="#">Accueil <span class="sr-only">(current)</span></a>
         </div>
@@ -43,13 +46,13 @@
     <div>
         {% block body %}
         {% endblock %}
-
     </div>
 </main>
 <script>
-document.querySelector('#menu').addEventListener('click', function() {
-  document.querySelector('.nav-bar').classList.toggle('collapsed');
-});
+function myFunction(x) {
+    x.classList.toggle("change");
+    document.querySelector('.nav-bar').classList.toggle('change');
+}
 </script>
 <!--<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
