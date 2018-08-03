@@ -1,11 +1,11 @@
 {% extends 'umm/base.html' %}
-
+{% block index_active %}active{% endblock %}
 {% block body %}
 {% if future_events %}
 <h1>Événements à venir</h1>
 <div class="event-container">
     {% for event in future_events %}
-    <div class="event-item">
+    <div class="event-item umm-bg">
         <div class="event-date">
             <i class="fa fa-calendar-alt" style="color:grey;"></i>
             {{ event.date }}<br>  <span></span>{% if event.time_begin %} <i class="fa fa-clock" style="color:grey;"></i> {{event.time_begin }} {% endif %}

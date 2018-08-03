@@ -24,8 +24,8 @@
         <div class="bar3"></div>
     </div>
     <div class="nav-bar umm-bg change">
-        <div class="nav-item active">
-            <a class="nav-link" href="#">Accueil <span class="sr-only">(current)</span></a>
+        <div class="nav-item {% block index_active %}{% endblock %}">
+            <a class="nav-link" href="{% url 'umm:index' %}">Accueil <span class="sr-only">(current)</span></a>
         </div>
         <div class="nav-item">
             <a class="nav-link" href="#">Qui sommes-nous ?</a>
@@ -36,8 +36,8 @@
         <div class="nav-item">
             <a class="nav-link" href="#">Archives</a>
         </div>
-        <div class="nav-item">
-            <a class="nav-link" href="#">Contact</a>
+        <div class="nav-item {% block email_active %}{% endblock %}">
+            <a class="nav-link" href="{% url 'umm:email' %}">Contact</a>
         </div>
     </div>
 </div>
