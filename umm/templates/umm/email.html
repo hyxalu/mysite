@@ -8,6 +8,28 @@
     {{ form.non_field_errors }}
     <div class="fieldWrapper">
         <div>
+            {{ form.given_name.errors }}
+        </div>
+        <div>
+            {{ form.given_name.label_tag }}
+        </div>
+        <div>
+            {{ form.given_name }}
+        </div>
+    </div>
+    <div class="fieldWrapper">
+        <div>
+            {{ form.name.errors }}
+        </div>
+        <div>
+            {{ form.name.label_tag }}
+        </div>
+        <div>
+            {{ form.name }}
+        </div>
+    </div>
+    <div class="fieldWrapper">
+        <div>
             {{ form.from_email.errors }}
         </div>
         <div>

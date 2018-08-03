@@ -27,7 +27,7 @@ def emailView(request):
                 send_mail(subject, message, from_email, ['schaillie@gmail.com'])
             except:
                 return HttpResponse('Error while sending mail.')
-            return HttpResponse('Mail sent.')
+                return redirect('success')
         else:
             return HttpResponse('Form invalid.')
 
