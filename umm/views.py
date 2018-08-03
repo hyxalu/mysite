@@ -16,6 +16,7 @@ def index(request):
 def emailView(request):
     if request.method == 'GET':
         form = ContactForm()
+        return render(request, "umm/email.html", {'form': form})
     else:
         form = ContactForm(request.POST)
         if form.is_valid():
@@ -24,10 +25,12 @@ def emailView(request):
             message = form.cleaned_data['message']
             try:
                 send_mail(subject, message, from_email, ['schaillie@gmail.com'])
-            except BadHeaderError:
-                return HttpResponse('Invalid header found.')
-            return redirect('success')
-    return render(request, "umm/email.html", {'form': form})
+            except:
+                return HttpResponse('Error while sending mail.')
+            return HttpResponse('Mail sent.')
+        else:
+            return HttpResponse('Form invalid.')
+
 
 def successView(request):
     return HttpResponse('Success! Thank you for your message.')
