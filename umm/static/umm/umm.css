@@ -7,16 +7,29 @@ body {
     background-color: rgb(214, 214, 214);
 }
 
+
+.nav-bar.collapsed {
+  max-height:0;
+  padding:0;
+}
+
+input#menu {
+    display: none;
+}
+
+.collapsible-menu label {
+    cursor: pointer;
+}
+
 @media screen and (max-width: 769px) {
     .container {
         padding: 1rem 2rem 1rem 2rem
     }
-    body .navbar {
+
+    body .nav-bar {
         flex-flow: column nowrap;
-        justify-content: space-around;
         padding: 1em;
     }
-
     .nav-item {
         flex-basis: 1.75rem;
     }
@@ -37,16 +50,16 @@ body {
     }
 }
 
-nav {
-    margin: 0;
-    padding: 0;
-}
-
-.navbar {
-    padding: 1em;
+.nav-bar {
+    overflow:hidden;
     display: flex;
     flex-flow: row wrap;
     justify-content: space-around;
+
+    transition: max-height 0.3s ease-out;
+    max-height:600px;
+    transition: padding 0.3s ease-out;
+    padding: 1em;
 }
 
 .event-container {
