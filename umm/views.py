@@ -22,7 +22,7 @@ def agenda(request):
     return render(request, 'umm/agenda.html', context)
 
 def archives(request):
-    past_events_list = Evenement.objects.filter(date__lt=timezone.now()).order_by('date')
+    past_events_list = Evenement.objects.filter(date__lt=timezone.now()).order_by('-date')
     context = {'past_events': past_events_list}
     return render(request, 'umm/archives.html', context)
 
