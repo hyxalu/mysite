@@ -7,15 +7,26 @@ from django.utils import timezone
 from .models import Evenement
 from .forms import ContactForm
 
-from . import urls
-
 # Create your views here.
 def index(request):
-    future_events_list = Evenement.objects.filter(date__gte=timezone.now()).order_by('date')
+    future_events_list = Evenement.objects.filter(date__gte=timezone.now()).order_by('date')[:2]
     context = {'future_events': future_events_list}
     return render(request, 'umm/index.html', context)
 
-def emailView(request):
+def who(request):
+    return render(request, 'umm/who.html')
+
+def agenda(request):
+    future_events_list = Evenement.objects.filter(date__gte=timezone.now()).order_by('date')
+    context = {'future_events': future_events_list}
+    return render(request, 'umm/agenda.html', context)
+
+def archives(request):
+    past_events_list = Evenement.objects.filter(date__lt=timezone.now()).order_by('date')
+    context = {'past_events': past_events_list}
+    return render(request, 'umm/archives.html', context)
+
+def email(request):
     if request.method == 'GET':
         form = ContactForm()
         return render(request, "umm/email.html", {'form': form})
@@ -37,5 +48,5 @@ def emailView(request):
             return HttpResponse('Form invalid.')
 
 
-def successView(request):
+def success(request):
     return render(request, 'umm/success.html')

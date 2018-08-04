@@ -27,14 +27,14 @@
         <div class="nav-item {% block index_active %}{% endblock %}">
             <a class="nav-link" href="{% url 'umm:index' %}">Accueil <span class="sr-only">(current)</span></a>
         </div>
-        <div class="nav-item">
-            <a class="nav-link" href="#">Qui sommes-nous ?</a>
+        <div class="nav-item {% block who_active %}{% endblock %}">
+            <a class="nav-link" href="{% url 'umm:who' %}">Qui sommes-nous ?</a>
         </div>
-        <div class="nav-item">
-            <a class="nav-link" href="#">Agenda</a>
+        <div class="nav-item {% block agenda_active %}{% endblock %}">
+            <a class="nav-link" href="{% url 'umm:agenda' %}">Agenda</a>
         </div>
-        <div class="nav-item">
-            <a class="nav-link" href="#">Archives</a>
+        <div class="nav-item {% block archives_active %}{% endblock %}">
+            <a class="nav-link" href="{% url 'umm:archives' %}">Archives</a>
         </div>
         <div class="nav-item {% block email_active %}{% endblock %}">
             <a class="nav-link" href="{% url 'umm:email' %}">Contact</a>

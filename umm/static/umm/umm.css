@@ -13,6 +13,35 @@ p {
     text-justify: inter-word;
 }
 
+textarea {
+  resize: vertical; /* user can resize vertically, but width is fixed */
+}
+div.form-actions {
+    text-align:center;
+}
+button[type=submit] {
+    width: 50%;
+    background-color: rgb(244, 117, 36);
+    padding: 14px 20px;
+    margin-left: auto;
+    margin-right: auto;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1.25rem;
+    font-family: 'Righteous', cursive;
+}
+
+input[type=text], input[type=email], select, textarea {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
 .umm-bg1 {
     background-color: rgb(244, 117, 36);
 }
@@ -220,7 +249,9 @@ a.umm-logo img {
 /*
 *== FIELDS ==
 */
-
+.fieldWrapper > div > label {
+    margin-left: 4px;
+}
 .fieldWrapper {
     margin: 20px auto 20px auto;
 }

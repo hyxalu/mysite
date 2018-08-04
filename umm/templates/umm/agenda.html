@@ -1,0 +1,26 @@
+{% extends 'umm/base.html' %}
+{% load staticfiles %}
+{% block agenda_active %}active{% endblock %}
+{% block body %}
+{% if future_events %}
+<h1>Les événements à venir</h1>
+<div class="event-container">
+    {% for event in future_events %}
+    <div class="event-item umm-bg">
+        <div class="event-date">
+            <i class="fa fa-calendar-alt umm-icon"></i>
+            {{ event.date }}<br>  <span></span>{% if event.time_begin %} <i class="fa fa-clock umm-icon"></i> {{event.time_begin }} {% endif %}
+        </div>
+        <div class="event-title">
+            {{ event.title }}<br>
+            {{ event.place.title }}
+        </div>
+        <div class="event-place">
+            <i class="fa fa-map-marker-alt umm-icon"></i>
+            {{ event.place.town }}
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endif %}
+{% endblock %}
