@@ -23,7 +23,7 @@
         <div class="bar2"></div>
         <div class="bar3"></div>
     </div>
-    <div class="nav-bar umm-bg change">
+    <div class="nav-bar umm-bg1 change">
         <div class="nav-item {% block index_active %}{% endblock %}">
             <a class="nav-link" href="{% url 'umm:index' %}">Accueil <span class="sr-only">(current)</span></a>
         </div>
@@ -42,12 +42,19 @@
     </div>
 </div>
 
+<header class="">
+    <img class="center logo" src="{%  static 'umm/logo.svg' %}" alt="">
+</header>
 <main class="container">
+    <!--<img class="logo" src="{%  static 'umm/logo.svg' %}" alt="">-->
     <div>
         {% block body %}
         {% endblock %}
     </div>
 </main>
+<footer class="hidden">
+    <img class="center" src="{%  static 'umm/logo.svg' %}" alt="">
+</footer>
 <script>
 function myFunction(x) {
     x.classList.toggle("change");
