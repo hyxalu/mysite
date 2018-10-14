@@ -45,7 +45,7 @@ class Evenement(models.Model):
     CLASSIC = 'CL'
     CASUAL = 'CA'
     OUTFIT_CHOICES = (
-        (CLASSIC, 'Haut: blanc ; Bas: noir'),
+        (CLASSIC, 'Classique (Haut blanc, bas noir)'),
         (CASUAL, 'Décontracté'),
     )
     outfit = models.CharField(
@@ -59,4 +59,4 @@ class Evenement(models.Model):
         """
         String for representing the Evenement Model object
         """
-        return self.title
+        return str.format("{} ({} - {})", self.title, self.place.title, self.date)

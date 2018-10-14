@@ -1,0 +1,32 @@
+{% extends 'umm/base.html' %}
+{% load staticfiles %}
+
+{% block body %}
+
+<i class="fa fa-calendar-alt umm-icon"></i>
+    {{event.date}}
+<i class="fa fa-clock umm-icon"></i>
+    {{event.time_begin}}
+<h2>{{event.title}}</h2>
+
+
+
+<p></p>
+
+<h3><i class="fa fa-map-marker-alt umm-icon"></i>
+    {{event.place.title}}</h3>
+
+<p>{{event.place.address}}</p>
+<p>{{event.place.postCode}} {{event.place.town}} - {{event.place.country}}</p>
+
+<h3>Note pour les musiciens</h3>
+
+{% if event.time_arrival %}
+<p><i class="fa fa-clock umm-icon"></i>
+   Heure de rendez-vous : {{event.time_arrival}}</p>
+{% endif %}
+
+<p><i class="fa fa-tshirt umm-icon"></i>
+    Tenue : {{event.get_outfit_display}}</p>
+
+{% endblock %}

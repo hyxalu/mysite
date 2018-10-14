@@ -4,28 +4,16 @@
 {% block body %}
 <img class="center presentation" src="{%  static 'umm/umm3.jpg' %}" alt="">
 
-<p>L'Union Musicale Maurageoise est un orchestre d'harmonie principalement actif dans la région du Centre, dans le Hainaut.
- Nous intégrons des musiciens de tout âge, amateurs ou professionnels. Nos répétitions ont lieu à Maurage, le vendredi soir.</p>
+<p>L'Union Musicale Maurageoise est un orchestre d'harmonie principalement actif dans la région du Centre, dans le Hainaut.</p>
+<p>Nous intégrons des musiciens de tout âge, amateurs ou professionnels.</p>
+<p>Nos répétitions ont lieu dans l'ancien hôtel de ville de Maurage, le vendredi soir, de 19h30 à 21h30.</p>
 
 
 {% if future_events %}
 <h1>Les prochains événements</h1>
 <div class="event-container">
     {% for event in future_events %}
-    <div class="event-item umm-bg">
-        <div class="event-date">
-            <i class="fa fa-calendar-alt umm-icon"></i>
-            {{ event.date }}<br>  <span></span>{% if event.time_begin %} <i class="fa fa-clock umm-icon"></i> {{event.time_begin }} {% endif %}
-        </div>
-        <div class="event-title">
-            {{ event.title }}<br>
-            {{ event.place.title }}
-        </div>
-        <div class="event-place">
-            <i class="fa fa-map-marker-alt umm-icon"></i>
-            {{ event.place.town }}
-        </div>
-    </div>
+    {% include "umm/event-item.html" with event=event%}
     {% endfor %}
 </div>
 {% endif %}

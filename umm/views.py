@@ -1,7 +1,7 @@
 from django.core.mail import send_mail, BadHeaderError
 from django.http import HttpResponse, HttpResponseRedirect
 
-from django.shortcuts import render, redirect, reverse
+from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.utils import timezone
 
 from .models import Evenement
@@ -13,18 +13,27 @@ def index(request):
     context = {'future_events': future_events_list}
     return render(request, 'umm/index.html', context)
 
+
 def who(request):
     return render(request, 'umm/who.html')
+
 
 def agenda(request):
     future_events_list = Evenement.objects.filter(date__gte=timezone.now()).order_by('date')
     context = {'future_events': future_events_list}
     return render(request, 'umm/agenda.html', context)
 
+
 def archives(request):
     past_events_list = Evenement.objects.filter(date__lt=timezone.now()).order_by('-date')
     context = {'past_events': past_events_list}
     return render(request, 'umm/archives.html', context)
+
+
+def detail_event(request, event_id):
+    event = get_object_or_404(Evenement, pk=event_id)
+    return render(request, 'umm/detail_event.html', {'event': event})
+
 
 def email(request):
     if request.method == 'GET':
