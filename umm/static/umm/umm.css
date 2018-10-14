@@ -13,6 +13,11 @@ p {
     text-justify: inter-word;
 }
 
+a {
+    color: inherit;
+    text-decoration: inherit;
+}
+
 textarea {
   resize: vertical; /* user can resize vertically, but width is fixed */
 }
