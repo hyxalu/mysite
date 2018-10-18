@@ -40,6 +40,15 @@
         <div class="nav-item {% block email_active %}{% endblock %}">
             <a class="nav-link" href="{% url 'umm:email' %}">Contact</a>
         </div>
+        <div class="nav-item" >
+            <i class="fa fa-child umm-icon"></i>
+            {% if user.is_authenticated %}
+            {{ user.username }}
+            <a href="{% url 'umm:logout' %}">(Logout)</a>
+            {% else %}
+            <a href="{% url 'umm:login' %}">Login</a>
+            {% endif %}
+        </div>
     </div>
 </div>
 
@@ -47,7 +56,6 @@
     <img class="center logo" src="{%  static 'umm/logo.svg' %}" alt="">
 </header>
 <main class="container">
-    <!--<img class="logo" src="{%  static 'umm/logo.svg' %}" alt="">-->
     <div>
         {% block body %}
         {% endblock %}

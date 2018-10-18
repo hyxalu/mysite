@@ -2,6 +2,8 @@ from django.urls import path
 
 from . import views
 
+from django.contrib.auth import views as auth_views
+
 app_name = 'umm'
 
 urlpatterns = [
@@ -12,4 +14,6 @@ urlpatterns = [
     path('email/', views.email, name='email'),
     path('success/', views.success, name='success'),
     path('who/', views.who, name='who'),
+    path('login/', auth_views.LoginView.as_view(template_name='umm/login.html'), name='login'),
+    path('logout/', auth_views.LogoutView.as_view(), name='logout'),
 ]
