@@ -100,7 +100,7 @@ else:
         'default': {
             'ENGINE': 'django.db.backends.mysql',
             'NAME': 'hyxalu$umm',
-            'USER': 'hyxalu$umm',
+            'USER': 'hyxalu',
             'PASSWORD': os.environ.get('DJANGO_MYSQL_PW', ""),
             'HOST': os.environ.get('DJANGO_MYSQL_HOST', ""),
             'TEST': {
