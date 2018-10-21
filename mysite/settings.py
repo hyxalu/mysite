@@ -88,12 +88,26 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+if DEBUG:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        }
     }
-}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': 'hyxalu$umm',
+            'USER': 'hyxalu$umm',
+            'PASSWORD': os.environ.get('DJANGO_MYSQL_PW', ""),
+            'HOST': os.environ.get('DJANGO_MYSQL_HOST', ""),
+            'TEST': {
+                'NAME': 'hyxalu$test_umm',
+            },
+        }
+    }
 
 
 # Password validation
