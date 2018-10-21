@@ -1,11 +1,12 @@
-from django.core.mail import send_mail, BadHeaderError
-from django.http import HttpResponse, HttpResponseRedirect
+from django.core.mail import send_mail
+from django.http import HttpResponse
+from django.contrib.auth.decorators import permission_required
 
-from django.shortcuts import render, redirect, reverse, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404
 from django.utils import timezone
 
-from .models import Evenement
-from .forms import ContactForm
+from .models import Evenement, Profile
+from .forms import ContactForm, BroadcastForm
 
 # Create your views here.
 def index(request):
@@ -35,10 +36,10 @@ def detail_event(request, event_id):
     return render(request, 'umm/detail_event.html', {'event': event})
 
 
-def email(request):
+def contact(request):
     if request.method == 'GET':
         form = ContactForm()
-        return render(request, "umm/email.html", {'form': form})
+        return render(request, "umm/contact.html", {'form': form})
     else:
         form = ContactForm(request.POST)
         if form.is_valid():
@@ -51,7 +52,26 @@ def email(request):
             try:
                 send_mail(subject, msg, from_email, ['schaillie@gmail.com'])
             except:
-                return HttpResponse('Error while sending mail.')
+                return HttpResponse('Une erreur s\'est produite lors de l\'envoi de l\'email.')
+            return redirect('umm:success')
+        else:
+            return HttpResponse('Form invalid.')
+
+@permission_required('umm.send_email', login_url='umm:login')
+def broadcast(request):
+    if request.method == 'GET':
+        form = BroadcastForm()
+        return render(request, "umm/broadcast.html", {'form': form})
+    else:
+        form = BroadcastForm(request.POST)
+        if form.is_valid():
+            subject = form.cleaned_data['subject']
+            message = form.cleaned_data['message']
+            users = Profile.objects.filter(user__groups__name='Newsletter').values_list('user__email', flat=True).distinct()
+            try:
+                send_mail(subject, message, 'harmonie.maurage@gmail.com', users)
+            except:
+                return HttpResponse('Une erreur s\'est produite lors de l\'envoi de l\'email.')
             return redirect('umm:success')
         else:
             return HttpResponse('Form invalid.')

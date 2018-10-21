@@ -37,8 +37,8 @@
         <div class="nav-item {% block archives_active %}{% endblock %}">
             <a class="nav-link" href="{% url 'umm:archives' %}">Archives</a>
         </div>
-        <div class="nav-item {% block email_active %}{% endblock %}">
-            <a class="nav-link" href="{% url 'umm:email' %}">Contact</a>
+        <div class="nav-item {% block contact_active %}{% endblock %}">
+            <a class="nav-link" href="{% url 'umm:contact' %}">Contact</a>
         </div>
         <div class="nav-item" >
             <i class="fa fa-child umm-icon"></i>
@@ -49,6 +49,11 @@
             <a href="{% url 'umm:login' %}">Login</a>
             {% endif %}
         </div>
+        {% if perms.umm.send_email %}
+        <div class="nav-item" >
+            <a class="nav-link" href="{% url 'umm:broadcast' %}">Broadcast</a>
+        </div>
+        {% endif %}
     </div>
 </div>
 

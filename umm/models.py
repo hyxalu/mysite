@@ -1,4 +1,8 @@
 from django.db import models
+from django.contrib.auth.models import User
+
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 # Create your models here.
 class Place(models.Model):
@@ -60,3 +64,22 @@ class Evenement(models.Model):
         String for representing the Evenement Model object
         """
         return str.format("{} ({} - {})", self.title, self.place.title, self.date)
+
+
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+
+    class Meta:
+        permissions = (
+            ("send_email", "Can send an email"),
+        )
+
+
+@receiver(post_save, sender=User)
+def create_user_profile(sender, instance, created, **kwargs):
+    if created:
+        Profile.objects.create(user=instance)
+
+@receiver(post_save, sender=User)
+def save_user_profile(sender, instance, **kwargs):
+    instance.profile.save()

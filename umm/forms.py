@@ -6,3 +6,8 @@ class ContactForm(forms.Form):
     from_email = forms.EmailField(label='Votre adresse email', required=True)
     subject = forms.CharField(label='Sujet de votre message', required=True)
     message = forms.CharField(label='Votre message', widget=forms.Textarea, required=True)
+
+
+class BroadcastForm(forms.Form):
+    subject = forms.CharField(label='Sujet de votre message', required=True)
+    message = forms.CharField(label='Votre message', widget=forms.Textarea, required=True)
