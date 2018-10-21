@@ -19,14 +19,19 @@
 <p>{{event.place.address}}</p>
 <p>{{event.place.postCode}} {{event.place.town}} - {{event.place.country}}</p>
 
+{% if event.time_arrival %}
 <h3>Note pour les musiciens</h3>
 
-{% if event.time_arrival %}
+{% if event.time_arrival or event.outfit %}
 <p><i class="fa fa-clock umm-icon"></i>
    Heure de rendez-vous : {{event.time_arrival}}</p>
 {% endif %}
 
+{% if event.outfit %}
 <p><i class="fa fa-tshirt umm-icon"></i>
     Tenue : {{event.get_outfit_display}}</p>
+{% endif %}
+
+{% endif %}
 
 {% endblock %}
