@@ -5,8 +5,10 @@
 
 <i class="fa fa-calendar-alt umm-icon"></i>
     {{event.date}}
+{% if event.time_begin %}
 <i class="fa fa-clock umm-icon"></i>
     {{event.time_begin}}
+{% endif %}
 <h2>{{event.title}}</h2>
 
 
