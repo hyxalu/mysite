@@ -36,11 +36,15 @@ if not DEBUG:
     SESSION_COOKIE_SECURE = True
 
 EMAIL_SUBJECT_PREFIX = "[UMM]"
-EMAIL_HOST = "smtp.gmail.com"
-EMAIL_HOST_USER = "harmonie.maurage@gmail.com"
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-EMAIL_HOST_PASSWORD = os.environ.get('DJANGO_EMAIL_PW', "")
+if DEBUG:
+    EMAIL_HOST = "127.0.0.1"
+    EMAIL_PORT = 25
+else:
+    EMAIL_HOST = "smtp.gmail.com"
+    EMAIL_HOST_USER = "harmonie.maurage@gmail.com"
+    EMAIL_PORT = 587
+    EMAIL_USE_TLS = True
+    EMAIL_HOST_PASSWORD = os.environ.get('DJANGO_EMAIL_PW', "")
 
 # Application definition
 
@@ -91,8 +95,15 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 if DEBUG:
     DATABASES = {
         'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': 'hyxalu$umm',
+            'USER': 'root',
+            'PASSWORD': '880607',
+            'HOST': '127.0.0.1',
+            'PORT': '2525',
+            'TEST': {
+                'NAME': 'hyxalu$test_umm',
+            },
         }
     }
 else:
