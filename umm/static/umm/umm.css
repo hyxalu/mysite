@@ -266,3 +266,20 @@ a.umm-logo img {
 .fieldWrapper>div>textarea {
     width: 100%;
 }
+
+/*
+*== RECIPIENTS ==
+*/
+
+.recipients {
+    padding: 8px;
+    background-color: white;
+    margin: 8px 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 250px);
+    grid-gap: 10px;
+    align-content: space-between;
+    justify-content: space-around;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}

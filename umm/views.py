@@ -60,14 +60,16 @@ def contact(request):
 @permission_required('umm.send_email', login_url='umm:login')
 def broadcast(request):
     if request.method == 'GET':
-        form = BroadcastForm()
+        form = BroadcastForm(initial={'recipients':Profile.objects.filter(user__groups__name='Newsletter')})
         return render(request, "umm/broadcast.html", {'form': form})
     else:
         form = BroadcastForm(request.POST)
         if form.is_valid():
             subject = form.cleaned_data['subject']
             message = form.cleaned_data['message']
-            users = Profile.objects.filter(user__groups__name='Newsletter').values_list('user__email', flat=True).distinct()
+            recipients = form.cleaned_data['recipients']
+            print(recipients)
+            users = recipients.values_list('user__email', flat=True).distinct()
             try:
                 send_mail(subject, message, 'harmonie.maurage@gmail.com', users)
             except:

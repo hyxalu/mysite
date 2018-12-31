@@ -74,6 +74,12 @@ class Profile(models.Model):
             ("send_email", "Can send an email"),
         )
 
+    def __str__(self):
+        """
+        String for representing the Profile Model object
+        """
+        return str.format("{} {}", self.user.first_name, self.user.last_name)
+
 
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):

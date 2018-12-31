@@ -51,7 +51,8 @@
         </div>
         {% if perms.umm.send_email %}
         <div class="nav-item" >
-            <a class="nav-link" href="{% url 'umm:broadcast' %}">Broadcast</a>
+            <i class="fa fa-envelope umm-icon"></i>
+            <a class="nav-link" href="{% url 'umm:broadcast' %}">Email membres</a>
         </div>
         {% endif %}
     </div>

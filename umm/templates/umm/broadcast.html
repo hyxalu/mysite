@@ -1,7 +1,7 @@
 {% extends 'umm/base.html' %}
 
 {% block body %}
-<h1>Envoyer un message à tous les membres de l'harmonie</h1>
+<h1>Envoyer un message aux membres de l'harmonie</h1>
 <form method="post">
     {% csrf_token %}
     {{ form.non_field_errors }}
@@ -25,6 +25,21 @@
         </div>
         <div>
             {{ form.message }}
+        </div>
+    </div>
+        <div class="fieldWrapper">
+        <div>
+            {{ form.recipients.errors }}
+        </div>
+        <div>
+            {{ form.recipients.label_tag }}
+        </div>
+        <div class="recipients">
+            {% for recip in form.recipients %}
+            <div>
+                {{ recip }}
+            </div>
+            {% endfor %}
         </div>
     </div>
     <div class="form-actions">
