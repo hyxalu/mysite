@@ -59,10 +59,10 @@ def contact(request):
 
 
 @permission_required('umm.send_email', login_url='umm:login')
-def broadcast(request):
+def email_members(request):
     if request.method == 'GET':
         form = BroadcastForm(initial={'recipients':Profile.objects.filter(user__groups__name='Newsletter')})
-        return render(request, "umm/broadcast.html", {'form': form})
+        return render(request, "umm/email_members.html", {'form': form})
     else:
         form = BroadcastForm(request.POST)
         if form.is_valid():
@@ -75,10 +75,14 @@ def broadcast(request):
                 send_mail(subject, message, 'harmonie.maurage@gmail.com', users)
             except:
                 return HttpResponse('Une erreur s\'est produite lors de l\'envoi de l\'email.')
-            return redirect('umm:success')
+            return redirect('umm:email_members_success')
         else:
             return HttpResponse('Form invalid.')
 
 
-def success(request):
-    return render(request, 'umm/success.html')
+@permission_required('umm.send_email', login_url='umm:login')
+def email_members_success(request):
+    return render(request, 'umm/email_members_success.html')
+
+def contact_success(request):
+    return render(request, 'umm/contact_success.html')
