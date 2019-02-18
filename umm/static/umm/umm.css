@@ -18,6 +18,10 @@ a {
     text-decoration: inherit;
 }
 
+form {
+    margin-bottom: 1rem;
+}
+
 textarea {
   resize: vertical; /* user can resize vertically, but width is fixed */
 }

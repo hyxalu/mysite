@@ -57,6 +57,7 @@ def contact(request):
         else:
             return HttpResponse('Form invalid.')
 
+
 @permission_required('umm.send_email', login_url='umm:login')
 def broadcast(request):
     if request.method == 'GET':
