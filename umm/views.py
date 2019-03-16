@@ -50,7 +50,7 @@ def contact(request):
             message = form.cleaned_data['message']
             msg = "{0} {1} ({2}) nous envoie le message suivant\r\n{3}".format(given_name , name, from_email, message)
             try:
-                send_mail(subject, msg, from_email, ['schaillie@gmail.com'])
+                send_mail(subject, msg, 'ne-pas-repondre@harmonie-maurage.be', ['schaillie@gmail.com'])
             except:
                 return HttpResponse('Une erreur s\'est produite lors de l\'envoi de l\'email.')
             return redirect('umm:success')
@@ -72,7 +72,7 @@ def email_members(request):
             print(recipients)
             users = recipients.values_list('user__email', flat=True).distinct()
             try:
-                send_mail(subject, message, 'harmonie.maurage@gmail.com', users)
+                send_mail(subject, message, 'ne-pas-repondre@harmonie-maurage.be', users)
             except:
                 return HttpResponse('Une erreur s\'est produite lors de l\'envoi de l\'email.')
             return redirect('umm:email_members_success')
