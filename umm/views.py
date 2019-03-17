@@ -53,7 +53,7 @@ def contact(request):
                 send_mail(subject, msg, 'ne-pas-repondre@harmonie-maurage.be', ['schaillie@gmail.com'])
             except:
                 return HttpResponse('Une erreur s\'est produite lors de l\'envoi de l\'email.')
-            return redirect('umm:success')
+            return redirect('umm:contact_success')
         else:
             return HttpResponse('Form invalid.')
 
