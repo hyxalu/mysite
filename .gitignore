@@ -5,3 +5,4 @@ __pycache__
 mysite_env
 db.sqlite3
 migrations
+db-backup.sql

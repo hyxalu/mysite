@@ -34,6 +34,12 @@
         <div>
             {{ form.recipients.label_tag }}
         </div>
+        <div class="buttonGroup">
+            <button type="button" onclick="manageRecipients('Unselect')">Tout désélectionner</button>
+            <button type="button" onclick="manageRecipients('Invert')">Inverser la sélection</button>
+            <button type="button" onclick="manageRecipients('Select')">Tout sélectionner</button>
+        </div>
+
         <div class="recipients">
             {% for recip in form.recipients %}
             <div>
@@ -41,9 +47,35 @@
             </div>
             {% endfor %}
         </div>
+        <div class="buttonGroup">
+            <button type="button" onclick="manageRecipients('Unselect')">Tout désélectionner</button>
+            <button type="button" onclick="manageRecipients('Invert')">Inverser la sélection</button>
+            <button type="button" onclick="manageRecipients('Select')">Tout sélectionner</button>
+        </div>
     </div>
     <div class="form-actions">
       <button type="submit">Envoyer</button>
     </div>
 </form>
+{% endblock %}
+
+{% block script %}
+function manageRecipients(mode){
+    document.querySelectorAll('[id^="id_recipients_"]').forEach( (checkbox) => {
+        switch (mode) {
+            case 'Unselect':
+                checkbox.checked = checkbox.checked = false;
+                break;
+            case 'Invert':
+                checkbox.checked = !checkbox.checked;
+                break;
+            case 'Select':
+                checkbox.checked = checkbox.checked = true;
+                break;
+            default:
+                break;
+        }
+
+    });
+}
 {% endblock %}
