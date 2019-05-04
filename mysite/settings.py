@@ -40,8 +40,8 @@ if DEBUG:
     EMAIL_HOST = "127.0.0.1"
     EMAIL_PORT = 25
 else:
-    EMAIL_HOST = "smtp.sendgrid.net"
-    EMAIL_HOST_USER = "hyxalu"
+    EMAIL_HOST = "smtp.mailgun.org"
+    EMAIL_HOST_USER = "postmaster@mg.harmonie-maurage.be"
     EMAIL_PORT = 587
     EMAIL_USE_TLS = True
     EMAIL_HOST_PASSWORD = os.environ.get('DJANGO_EMAIL_PW', "")
