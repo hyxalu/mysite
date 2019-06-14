@@ -40,11 +40,13 @@ if DEBUG:
     EMAIL_HOST = "127.0.0.1"
     EMAIL_PORT = 25
 else:
-    EMAIL_HOST = "smtp.mailgun.org"
-    EMAIL_HOST_USER = "postmaster@mg.harmonie-maurage.be"
+    EMAIL_HOST = "smtp.gmail.com"
+    EMAIL_HOST_USER = "harmonie.maurage@gmail.com"
     EMAIL_PORT = 587
     EMAIL_USE_TLS = True
     EMAIL_HOST_PASSWORD = os.environ.get('DJANGO_EMAIL_PW', "")
+
+ADMIN = [('David', 'schaillie@gmail.com')]
 
 # Application definition
 
