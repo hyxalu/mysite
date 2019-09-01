@@ -101,8 +101,7 @@ if DEBUG:
             'NAME': 'hyxalu$umm',
             'USER': 'root',
             'PASSWORD': '880607',
-            'HOST': '127.0.0.1',
-            'PORT': '2525',
+            'HOST': 'localhost',
             'TEST': {
                 'NAME': 'hyxalu$test_umm',
             },
