@@ -1,4 +1,4 @@
-from django.core.mail import send_mail
+from django.core.mail import EmailMessage
 from django.http import HttpResponse
 from django.contrib.auth.decorators import permission_required
 
@@ -50,7 +50,12 @@ def contact(request):
             message = form.cleaned_data['message']
             msg = "{0} {1} ({2}) nous envoie le message suivant\r\n{3}".format(given_name , name, from_email, message)
             try:
-                send_mail(subject, msg, 'ne-pas-repondre@harmonie-maurage.be', ['schaillie@gmail.com'])
+                email = EmailMessage(
+                    subject,
+                    msg,
+                    'ne-pas-repondre@harmonie-maurage.be',
+                    ["schaillie@gmail.com"])
+                email.send(True)
             except:
                 return HttpResponse('Une erreur s\'est produite lors de l\'envoi de l\'email.')
             return redirect('umm:contact_success')
@@ -72,8 +77,16 @@ def email_members(request):
             print(recipients)
             users = recipients.values_list('user__email', flat=True).distinct()
             try:
-                send_mail(subject, message, 'ne-pas-repondre@harmonie-maurage.be', users)
-            except:
+                email = EmailMessage(
+                    subject,
+                    message,
+                    'ne-pas-repondre@harmonie-maurage.be',
+                    [],
+                    users,
+                    reply_to=["fabienne.dussenwart@gmail.com"])
+                email.send(True)
+            except Exception as e:
+                #return HttpResponse(str(e))
                 return HttpResponse('Une erreur s\'est produite lors de l\'envoi de l\'email.')
             return redirect('umm:email_members_success')
         else:
