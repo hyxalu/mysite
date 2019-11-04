@@ -48,9 +48,11 @@ class Evenement(models.Model):
     time_arrival = models.TimeField(help_text="Heure d'arrivée des musiciens", blank=True, null=True)
     CLASSIC = 'CL'
     CASUAL = 'CA'
+    BLACK = 'BL'
     OUTFIT_CHOICES = (
         (CLASSIC, 'Classique (Haut blanc, bas noir)'),
         (CASUAL, 'Décontracté'),
+        (BLACK, 'Noir intégral (Haut noir, bas noir)'),
     )
     outfit = models.CharField(
         max_length=2,
