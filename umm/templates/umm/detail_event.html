@@ -19,7 +19,7 @@
     {{event.place.title}}</h3>
 
 <p>{{event.place.address}}</p>
-<p>{{event.place.postCode}} {{event.place.town}} - {{event.place.country}}</p>
+<p>{{event.place.postCode}} {{event.place.town}}{% if event.place.coutry %} - {{event.place.country}}{% endif %}</p>
 
 {% if event.time_arrival %}
 <h3>Note pour les musiciens</h3>
