@@ -8,6 +8,8 @@ from django.utils import timezone
 from .models import Evenement, Profile
 from .forms import ContactForm, BroadcastForm
 
+import re
+
 # Create your views here.
 def index(request):
     future_events_list = Evenement.objects.filter(date__gte=timezone.now()).order_by('date')
@@ -77,14 +79,25 @@ def email_members(request):
             print(recipients)
             users = recipients.values_list('user__email', flat=True).distinct()
             try:
+                p = re.compile('[^@]+@skynet\.be')
+                users_skynet = [ u for u in users if p.match(u)]
+                users_other = [ u for u in users if not p.match(u)]
                 email = EmailMessage(
                     subject,
                     message,
                     'ne-pas-repondre@harmonie-maurage.be',
                     [],
-                    users,
+                    users_other,
                     reply_to=["fabienne.dussenwart@gmail.com"])
                 email.send(True)
+                email2 = EmailMessage(
+                    subject,
+                    message,
+                    'ne-pas-repondre@harmonie-maurage.be',
+                    [],
+                    users_skynet,
+                    reply_to=["fabienne.dussenwart@gmail.com"])
+                email2.send(True)
             except Exception as e:
                 #return HttpResponse(str(e))
                 return HttpResponse('Une erreur s\'est produite lors de l\'envoi de l\'email.')
