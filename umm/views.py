@@ -79,7 +79,7 @@ def email_members(request):
             print(recipients)
             users = recipients.values_list('user__email', flat=True).distinct()
             try:
-                p = re.compile('[^@]+@skynet\.be')
+                p = re.compile('[^@]+@(skynet\.be|belgacom\.net)')
                 users_skynet = [ u for u in users if p.match(u)]
                 users_other = [ u for u in users if not p.match(u)]
                 email = EmailMessage(
