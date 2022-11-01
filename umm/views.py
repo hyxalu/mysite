@@ -90,14 +90,15 @@ def email_members(request):
                     users_other,
                     reply_to=["fabienne.dussenwart@gmail.com"])
                 email.send(True)
-                email2 = EmailMessage(
-                    subject,
-                    message,
-                    'ne-pas-repondre@harmonie-maurage.be',
-                    [],
-                    users_skynet,
-                    reply_to=["fabienne.dussenwart@gmail.com"])
-                email2.send(True)
+                for singleEmail in users_skynet:
+                    email2 = EmailMessage(
+                        subject,
+                        message,
+                        'ne-pas-repondre@harmonie-maurage.be',
+                        [],
+                        [singleEmail],
+                        reply_to=["fabienne.dussenwart@gmail.com"])
+                    email2.send(True)
             except Exception as e:
                 #return HttpResponse(str(e))
                 return HttpResponse('Une erreur s\'est produite lors de l\'envoi de l\'email.')
