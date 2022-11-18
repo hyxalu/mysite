@@ -115,6 +115,9 @@ else:
             'NAME': 'hyxalu$umm',
             'USER': 'hyxalu',
             'PASSWORD': os.environ.get('DJANGO_MYSQL_PW', ""),
+            'OPTIONS': {
+                'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
+            },
             'HOST': os.environ.get('DJANGO_MYSQL_HOST', ""),
             'TEST': {
                 'NAME': 'hyxalu$test_umm',
