@@ -49,10 +49,12 @@ class Evenement(models.Model):
     CLASSIC = 'CL'
     CASUAL = 'CA'
     BLACK = 'BL'
+    CHRISTMAS = 'NO'
     OUTFIT_CHOICES = (
         (CLASSIC, 'Classique (Haut blanc, bas noir)'),
         (CASUAL, 'Décontracté'),
         (BLACK, 'Noir intégral (Haut noir, bas noir)'),
+        (CHRISTMAS, 'Tenue Noël'),
     )
     outfit = models.CharField(
         max_length=2,
