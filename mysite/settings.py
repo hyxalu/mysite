@@ -47,6 +47,8 @@ else:
     EMAIL_PORT = 587
     EMAIL_USE_TLS = True
     EMAIL_HOST_PASSWORD = os.environ.get('DJANGO_EMAIL_PW', "")
+    RECAPTCHA_PRIVATE_KEY = os.environ.get('RECAPTCHA_PRIVATE_KEY', "")
+    RECAPTCHA_PUBLIC_KEY = os.environ.get('RECAPTCHA_PUBLIC_KEY', "")
 
 ADMIN = [('David', 'schaillie@gmail.com')]
 
