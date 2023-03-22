@@ -40,6 +40,7 @@ EMAIL_SUBJECT_PREFIX = "[UMM]"
 if DEBUG:
     EMAIL_HOST = "127.0.0.1"
     EMAIL_PORT = 25
+    SILENCED_SYSTEM_CHECKS = ['captcha.recaptcha_test_key_error']
 else:
     EMAIL_HOST = "smtp.gmail.com"
     EMAIL_HOST_USER = "harmonie.maurage@gmail.com"
@@ -52,6 +53,7 @@ ADMIN = [('David', 'schaillie@gmail.com')]
 # Application definition
 
 INSTALLED_APPS = [
+    'captcha',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

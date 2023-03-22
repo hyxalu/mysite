@@ -11,8 +11,11 @@ from .forms import ContactForm, BroadcastForm
 import re
 
 # Create your views here.
+
+
 def index(request):
-    future_events_list = Evenement.objects.filter(date__gte=timezone.now()).order_by('date')
+    future_events_list = Evenement.objects.filter(
+        date__gte=timezone.now()).order_by('date')
     context = {'future_events': future_events_list}
     return render(request, 'umm/index.html', context)
 
@@ -22,13 +25,15 @@ def who(request):
 
 
 def agenda(request):
-    future_events_list = Evenement.objects.filter(date__gte=timezone.now()).order_by('date')
+    future_events_list = Evenement.objects.filter(
+        date__gte=timezone.now()).order_by('date')
     context = {'future_events': future_events_list}
     return render(request, 'umm/agenda.html', context)
 
 
 def archives(request):
-    past_events_list = Evenement.objects.filter(date__lt=timezone.now()).order_by('-date')
+    past_events_list = Evenement.objects.filter(
+        date__lt=timezone.now()).order_by('-date')
     context = {'past_events': past_events_list}
     return render(request, 'umm/archives.html', context)
 
@@ -50,7 +55,8 @@ def contact(request):
             subject = form.cleaned_data['subject']
             from_email = form.cleaned_data['from_email']
             message = form.cleaned_data['message']
-            msg = "{0} {1} ({2}) nous envoie le message suivant\r\n{3}".format(given_name , name, from_email, message)
+            msg = "{0} {1} ({2}) nous envoie le message suivant\r\n{3}".format(
+                given_name, name, from_email, message)
             try:
                 email = EmailMessage(
                     subject,
@@ -62,13 +68,18 @@ def contact(request):
                 return HttpResponse('Une erreur s\'est produite lors de l\'envoi de l\'email.')
             return redirect('umm:contact_success')
         else:
-            return HttpResponse('Form invalid.')
+            for key, error in list(form.errors.items()):
+                if key == 'captcha' and error[0] == 'This field is required.':
+                    form.non_field_errors("You must pass the reCAPTCHA test")
+                    continue
+            return render(request, "umm/contact.html", {'form': form})
 
 
 @permission_required('umm.send_email', login_url='umm:login')
 def email_members(request):
     if request.method == 'GET':
-        form = BroadcastForm(initial={'recipients':Profile.objects.filter(user__groups__name='Newsletter')})
+        form = BroadcastForm(
+            initial={'recipients': Profile.objects.filter(user__groups__name='Newsletter')})
         return render(request, "umm/email_members.html", {'form': form})
     else:
         form = BroadcastForm(request.POST)
@@ -80,8 +91,8 @@ def email_members(request):
             users = recipients.values_list('user__email', flat=True).distinct()
             try:
                 p = re.compile('[^@]+@(skynet\.be|belgacom\.net)')
-                users_skynet = [ u for u in users if p.match(u)]
-                users_other = [ u for u in users if not p.match(u)]
+                users_skynet = [u for u in users if p.match(u)]
+                users_other = [u for u in users if not p.match(u)]
                 email = EmailMessage(
                     subject,
                     message,
@@ -100,7 +111,7 @@ def email_members(request):
                         reply_to=["fabienne.dussenwart@gmail.com"])
                     email2.send(True)
             except Exception as e:
-                #return HttpResponse(str(e))
+                # return HttpResponse(str(e))
                 return HttpResponse('Une erreur s\'est produite lors de l\'envoi de l\'email.')
             return redirect('umm:email_members_success')
         else:
@@ -110,6 +121,7 @@ def email_members(request):
 @permission_required('umm.send_email', login_url='umm:login')
 def email_members_success(request):
     return render(request, 'umm/email_members_success.html')
+
 
 def contact_success(request):
     return render(request, 'umm/contact_success.html')

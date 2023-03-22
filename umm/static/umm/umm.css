@@ -1,5 +1,5 @@
 body {
-    background-color: rgb(245,245,245);
+    background-color: rgb(245, 245, 245);
     font-family: 'Righteous', cursive;
     margin: 0;
 }
@@ -9,7 +9,7 @@ header {
 }
 
 p {
-    //text-align: none;
+    /*text-align: none;*/
     text-justify: inter-word;
 }
 
@@ -23,11 +23,14 @@ form {
 }
 
 textarea {
-  resize: vertical; /* user can resize vertically, but width is fixed */
+    resize: vertical;
+    /* user can resize vertically, but width is fixed */
 }
+
 div.form-actions {
-    text-align:center;
+    text-align: center;
 }
+
 button[type=submit] {
     width: 50%;
     background-color: rgb(244, 117, 36);
@@ -61,7 +64,19 @@ button[type=button] {
     /*align-content: center;*/
 }
 
-input[type=text], input[type=email], input[type=password], select, textarea {
+.captcha {
+    margin: 0 auto 0 auto;
+}
+
+.errorlist>li {
+    color: red;
+}
+
+input[type=text],
+input[type=email],
+input[type=password],
+select,
+textarea {
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
@@ -74,8 +89,9 @@ input[type=text], input[type=email], input[type=password], select, textarea {
 .umm-bg1 {
     background-color: rgb(244, 117, 36);
 }
+
 .umm-bg {
-    background: linear-gradient(135deg, rgb(244, 117, 36), rgb(254, 213, 99) );
+    background: linear-gradient(135deg, rgb(244, 117, 36), rgb(254, 213, 99));
 }
 
 img.logo {
@@ -87,7 +103,7 @@ img.logo {
     display: none;
 }
 
-img.center  {
+img.center {
     display: block;
     margin-left: auto;
     margin-right: auto;
@@ -102,11 +118,14 @@ img.presentation {
 /*
 *== MENU ==
 */
-.collapsible-menu{
+.collapsible-menu {
     z-index: 99;
-    position: fixed; /* Set the navbar to fixed position */
-    top: 0; /* Position the navbar at the top of the page */
-    width: 100%; /* Full width */
+    position: fixed;
+    /* Set the navbar to fixed position */
+    top: 0;
+    /* Position the navbar at the top of the page */
+    width: 100%;
+    /* Full width */
 }
 
 
@@ -120,10 +139,12 @@ img.presentation {
     margin: 7px;
 }
 
-.bar1, .bar2, .bar3 {
+.bar1,
+.bar2,
+.bar3 {
     width: 35px;
     height: 5px;
-    background-color: rgba(0,0,0,0.8);
+    background-color: rgba(0, 0, 0, 0.8);
     margin: 0px 0 6px 0;
     transition: 0.4s;
 }
@@ -133,7 +154,9 @@ img.presentation {
     background-color: #FFF;
 }
 
-.change .bar2 {opacity: 0;}
+.change .bar2 {
+    opacity: 0;
+}
 
 .change .bar3 {
     transform: rotate(45deg) translate(-8px, -8px);
@@ -144,25 +167,26 @@ img.presentation {
 *== MENU ==
 */
 
-.nav-item:not(.active) > a:link,
-.nav-item:not(.active) > a:visited {
+.nav-item:not(.active)>a:link,
+.nav-item:not(.active)>a:visited {
     color: black;
     text-decoration: none;
 }
 
-.nav-item:not(.active) > a:hover,
-.nav-item:not(.active) > a:active {
+.nav-item:not(.active)>a:hover,
+.nav-item:not(.active)>a:active {
     color: grey;
     text-decoration: none;
 }
 
-.nav-item.active > a:link,
-.nav-item.active > a:visited {
+.nav-item.active>a:link,
+.nav-item.active>a:visited {
     color: white;
     text-decoration: none;
 }
-.nav-item.active > a:hover,
-.nav-item.active > a:active {
+
+.nav-item.active>a:hover,
+.nav-item.active>a:active {
     color: grey;
     text-decoration: none;
 }
@@ -180,16 +204,19 @@ img.presentation {
         flex-flow: column nowrap;
         padding: 1em;
         transition: max-height 0.4s ease-out;
-        max-height:600px;
+        max-height: 600px;
         transition: padding 0.4s ease-out;
     }
+
     .nav-item {
         flex-basis: 1.75rem;
     }
+
     .nav-bar.change {
-        max-height:0;
-        padding:0;
+        max-height: 0;
+        padding: 0;
     }
+
     .menu {
         display: inline;
     }
@@ -200,31 +227,34 @@ img.presentation {
 */
 
 #texte {
-  grid-area: texte;
+    grid-area: texte;
 }
+
 #pagefb {
-  grid-area: pagefb;
+    grid-area: pagefb;
 }
+
 #events {
-  grid-area: events;
+    grid-area: events;
 }
 
 #index-wrapper {
-  display: grid;
-  grid-gap: 20px;
-  grid-template-areas: 
-    "texte"
-    "pagefb"
-    "events";
+    display: grid;
+    grid-gap: 20px;
+    grid-template-areas:
+        "texte"
+        "pagefb"
+        "events";
 }
+
 @media (min-width: 993px) {
-  #index-wrapper {
-    grid-template-columns: 1fr 500px;
-    grid-template-rows: 1fr 1fr;
-    grid-template-areas: 
-      "texte  pagefb"
-      "events     pagefb";
-  }
+    #index-wrapper {
+        grid-template-columns: 1fr 500px;
+        grid-template-rows: 1fr 1fr;
+        grid-template-areas:
+            "texte  pagefb"
+            "events     pagefb";
+    }
 }
 
 /*
@@ -236,16 +266,19 @@ img.presentation {
         padding: 1rem 2rem 2rem 2rem
     }
 }
+
 @media screen and (min-width: 769px) {
     .container {
         padding: 1rem 3rem 3rem 3rem
     }
 }
+
 @media screen and (min-width: 993px) {
     .container {
         padding: 1rem 5rem 5rem 5rem
     }
 }
+
 @media screen and (min-width: 1200px) {
     .container {
         padding: 1rem 8rem 8rem 8rem;
@@ -263,10 +296,10 @@ img.presentation {
     grid-gap: 20px;
     grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
 }
-.event-item
-{
+
+.event-item {
     /*Appearance*/
-    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
     padding: 10px;
     border: 2px solid;
     border-radius: 5px;
@@ -275,16 +308,18 @@ img.presentation {
 
     position: relative;
     display: flex;
-    flex-direction:column;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
 }
+
 .event-date {
     left: 12px;
     top: 5px;
     position: absolute;
     font-size: 1.25em;
 }
+
 .event-place {
     bottom: 5px;
     position: absolute;
@@ -292,6 +327,7 @@ img.presentation {
     text-align: right;
     width: 90%;
 }
+
 .event-title {
     font-size: 1.5em;
     text-align: center;
@@ -302,7 +338,7 @@ img.presentation {
 */
 
 a.umm-logo img {
-    display:none;
+    display: none;
     width: auto;
     height: 100%;
 }
@@ -310,15 +346,18 @@ a.umm-logo img {
 /*
 *== FIELDS ==
 */
-.fieldWrapper > div > label {
+.fieldWrapper>div>label {
     margin-left: 4px;
 }
+
 .fieldWrapper {
     margin: 20px auto 20px auto;
 }
+
 .fieldWrapper>div>input {
     width: 100%;
 }
+
 .fieldWrapper>div>textarea {
     width: 100%;
 }
