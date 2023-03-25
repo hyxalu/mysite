@@ -106,8 +106,8 @@ def email_members(request):
                         subject,
                         message,
                         'ne-pas-repondre@harmonie-maurage.be',
-                        [],
                         [singleEmail],
+                        [],
                         reply_to=["fabienne.dussenwart@gmail.com"])
                     email2.send(True)
             except Exception as e:
