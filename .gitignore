@@ -6,3 +6,4 @@ mysite_env
 db.sqlite3
 migrations
 db-backup.sql
+static/

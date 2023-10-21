@@ -5,7 +5,8 @@
 <h1>Contactez-nous</h1>
 <form method="post">
     {% csrf_token %}
-    {{ form }}
+    {{ form.media }}
+    {{ form.as_p }}
     <div class="form-actions">
       <button type="submit">Envoyer</button>
     </div>

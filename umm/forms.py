@@ -2,6 +2,7 @@ from django import forms
 from .models import Profile
 from captcha.fields import ReCaptchaField
 from captcha.widgets import ReCaptchaV2Checkbox
+from ckeditor.widgets import CKEditorWidget
 
 class ContactForm(forms.Form):
     given_name = forms.CharField(label='Prénom', required=True)
@@ -9,7 +10,7 @@ class ContactForm(forms.Form):
     from_email = forms.EmailField(label='Votre adresse email', required=True)
     captcha = ReCaptchaField(widget=ReCaptchaV2Checkbox(), error_messages={'required': 'Vous devez réussir le test reCaptcha.'})
     subject = forms.CharField(label='Sujet de votre message', required=True)
-    message = forms.CharField(label='Votre message', widget=forms.Textarea, required=True)
+    message = forms.CharField(label='Votre message', widget=CKEditorWidget(), required=True)
 
 
 class BroadcastForm(forms.Form):
@@ -20,4 +21,4 @@ class BroadcastForm(forms.Form):
         widget=forms.CheckboxSelectMultiple
     )
     subject = forms.CharField(label='Sujet de votre message', required=True)
-    message = forms.CharField(label='Votre message', widget=forms.Textarea, required=True)
+    message = forms.CharField(label='Votre message', widget=CKEditorWidget(), required=True)

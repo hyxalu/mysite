@@ -21,7 +21,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'django-insecure-uko!1!!z+zwd&_^dwyf@g_*)0oj*aik08lo5+r_mm7t&xbtrb7')
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'XjxOVlVdISp4&d$@W$@f47lRCI3lyyf#@tTAg*lI4Xw^LNVw65')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 if os.environ.get('DJANGO_DEBUG', "True") == "False":
@@ -56,6 +56,7 @@ ADMIN = [('David', 'schaillie@gmail.com')]
 
 INSTALLED_APPS = [
     'captcha',
+    'ckeditor',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -175,3 +176,5 @@ LOGOUT_REDIRECT_URL = '/'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+CKEDITOR_BASEPATH = "/static/ckeditor/ckeditor/"

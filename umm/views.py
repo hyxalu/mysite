@@ -4,6 +4,7 @@ from django.contrib.auth.decorators import permission_required
 
 from django.shortcuts import render, redirect, get_object_or_404
 from django.utils import timezone
+from django.utils.html import strip_tags
 
 from .models import Evenement, Profile
 from .forms import ContactForm, BroadcastForm
@@ -63,6 +64,7 @@ def contact(request):
                     msg,
                     'ne-pas-repondre@harmonie-maurage.be',
                     ["schaillie@gmail.com"])
+                email.content_subtype = "html"
                 email.send(True)
             except:
                 return HttpResponse('Une erreur s\'est produite lors de l\'envoi de l\'email.')
@@ -86,6 +88,7 @@ def email_members(request):
         if form.is_valid():
             subject = form.cleaned_data['subject']
             message = form.cleaned_data['message']
+            # plain_message = strip_tags(message) # to be handled later
             recipients = form.cleaned_data['recipients']
             print(recipients)
             users = recipients.values_list('user__email', flat=True).distinct()
@@ -100,6 +103,7 @@ def email_members(request):
                     [],
                     users_other,
                     reply_to=["fabienne.dussenwart@gmail.com"])
+                email.content_subtype = "html"
                 email.send(True)
                 for singleEmail in users_skynet:
                     email2 = EmailMessage(
@@ -110,7 +114,6 @@ def email_members(request):
                         [])
                     email2.send(True)
             except Exception as e:
-                # return HttpResponse(str(e))
                 return HttpResponse('Une erreur s\'est produite lors de l\'envoi de l\'email.')
             return redirect('umm:email_members_success')
         else:
