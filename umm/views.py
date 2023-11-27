@@ -13,6 +13,8 @@ import re
 
 # Create your views here.
 
+from_email = 'harmonie.maurage@gmail.com'
+
 
 def index(request):
     future_events_list = Evenement.objects.filter(
@@ -62,7 +64,7 @@ def contact(request):
                 email = EmailMessage(
                     subject,
                     msg,
-                    'ne-pas-repondre@harmonie-maurage.be',
+                    from_email,
                     ["schaillie@gmail.com"])
                 email.content_subtype = "html"
                 email.send(True)
@@ -99,7 +101,7 @@ def email_members(request):
                 email = EmailMessage(
                     subject,
                     message,
-                    'ne-pas-repondre@harmonie-maurage.be',
+                    from_email,
                     [],
                     users_other,
                     reply_to=["fabienne.dussenwart@gmail.com"])
@@ -109,7 +111,7 @@ def email_members(request):
                     email2 = EmailMessage(
                         subject,
                         message,
-                        'ne-pas-repondre@harmonie-maurage.be',
+                        from_email,
                         [singleEmail],
                         [])
                     email2.content_subtype = "html"
