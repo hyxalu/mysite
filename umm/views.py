@@ -112,6 +112,7 @@ def email_members(request):
                         'ne-pas-repondre@harmonie-maurage.be',
                         [singleEmail],
                         [])
+                    email2.content_subtype = "html"
                     email2.send(True)
             except Exception as e:
                 return HttpResponse('Une erreur s\'est produite lors de l\'envoi de l\'email.')
