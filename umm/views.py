@@ -1,4 +1,4 @@
-from django.core.mail import EmailMessage
+from django.core.mail import EmailMessage, send_mail
 from django.http import HttpResponse
 from django.contrib.auth.decorators import permission_required
 
@@ -90,7 +90,7 @@ def email_members(request):
         if form.is_valid():
             subject = form.cleaned_data['subject']
             message = form.cleaned_data['message']
-            # plain_message = strip_tags(message) # to be handled later
+            plain_message = strip_tags(message) # to be handled later
             recipients = form.cleaned_data['recipients']
             print(recipients)
             users = recipients.values_list('user__email', flat=True).distinct()
@@ -108,14 +108,7 @@ def email_members(request):
                 email.content_subtype = "html"
                 email.send(True)
                 for singleEmail in users_skynet:
-                    email2 = EmailMessage(
-                        subject,
-                        message,
-                        from_email,
-                        [singleEmail],
-                        [])
-                    email2.content_subtype = "html"
-                    email2.send(True)
+                    send_mail(subject, plain_message, from_email, [singleEmail], fail_silently=False, html_message=message)
             except Exception as e:
                 return HttpResponse('Une erreur s\'est produite lors de l\'envoi de l\'email.')
             return redirect('umm:email_members_success')
