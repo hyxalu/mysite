@@ -92,7 +92,7 @@ def email_members(request):
         if form.is_valid():
             subject = form.cleaned_data['subject']
             message = form.cleaned_data['message']
-            plain_message = strip_tags(message) # to be handled later
+            #plain_message = strip_tags(message) # to be handled later
             recipients = form.cleaned_data['recipients']
             print(recipients)
             users = recipients.values_list('user__email', flat=True).distinct()
@@ -100,17 +100,21 @@ def email_members(request):
                 p = re.compile('[^@]+@(skynet\.be|belgacom\.net)')
                 users_skynet = [u for u in users if p.match(u)]
                 users_other = [u for u in users if not p.match(u)]
-                email = EmailMessage(
-                    subject,
-                    message,
-                    from_email,
-                    [],
-                    users_other,
-                    reply_to=["fabienne.dussenwart@gmail.com"])
-                email.content_subtype = "html"
-                email.send(True)
+                print(users_other)
+                print(users_skynet)
+                #email = EmailMessage(
+                #    subject,
+                #    message,
+                #    from_email,
+                #    [],
+                #    users_other,
+                #    reply_to=["fabienne.dussenwart@gmail.com"])
+                #email.content_subtype = "html"
+                #email.send(True)
                 for singleEmail in users_skynet:
-                    send_mail(subject, plain_message, from_email, [singleEmail], fail_silently=False, html_message=message)
+                    print(settings.DJANGO_MAILGUN_API_KEY)
+                    print(settings.DJANGO_MAILGUN_SERVER_NAME)
+                    #send_mail(subject, plain_message, from_email, [singleEmail], fail_silently=False, html_message=message)
                     r = requests.post(
                         settings.DJANGO_MAILGUN_SERVER_NAME + "/messages",
                         auth=("api", settings.DJANGO_MAILGUN_API_KEY),
@@ -119,7 +123,12 @@ def email_members(request):
                             "subject": subject,
                             "text": strip_tags(message),
                             "html": message})
+                    print(r)
             except Exception as e:
+                if hasattr(e, 'message'):
+                    print(e.message)
+                else:
+                    print(e)
                 return HttpResponse('Une erreur s\'est produite lors de l\'envoi de l\'email.')
             return redirect('umm:email_members_success')
         else:

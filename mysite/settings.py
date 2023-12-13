@@ -54,7 +54,7 @@ ADMIN = [('David', 'schaillie@gmail.com')]
 
 # MailGun settings
 DJANGO_MAILGUN_SERVER_NAME = 'https://api.mailgun.net/v3/mg.harmonie-maurage.be'
-os.environ.get('DJANGO_EMAIL_PW', "")
+DJANGO_MAILGUN_API_KEY = os.environ.get('DJANGO_MAILGUN_API_KEY', "")
 
 # Application definition
 
