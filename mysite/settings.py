@@ -52,6 +52,10 @@ else:
 
 ADMIN = [('David', 'schaillie@gmail.com')]
 
+# MailGun settings
+DJANGO_MAILGUN_SERVER_NAME = 'https://api.mailgun.net/v3/mg.harmonie-maurage.be'
+os.environ.get('DJANGO_EMAIL_PW', "")
+
 # Application definition
 
 INSTALLED_APPS = [

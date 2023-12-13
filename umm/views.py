@@ -5,10 +5,12 @@ from django.contrib.auth.decorators import permission_required
 from django.shortcuts import render, redirect, get_object_or_404
 from django.utils import timezone
 from django.utils.html import strip_tags
+from django.conf import settings
 
 from .models import Evenement, Profile
 from .forms import ContactForm, BroadcastForm
 
+import requests
 import re
 
 # Create your views here.
@@ -109,6 +111,14 @@ def email_members(request):
                 email.send(True)
                 for singleEmail in users_skynet:
                     send_mail(subject, plain_message, from_email, [singleEmail], fail_silently=False, html_message=message)
+                    r = requests.post(
+                        settings.DJANGO_MAILGUN_SERVER_NAME + "/messages",
+                        auth=("api", settings.DJANGO_MAILGUN_API_KEY),
+                        data={"from": "Union Musicale Maurageoise<ne-pas-repondre@harmonie-maurage.be>",
+                            "to": singleEmail,
+                            "subject": subject,
+                            "text": strip_tags(message),
+                            "html": message})
             except Exception as e:
                 return HttpResponse('Une erreur s\'est produite lors de l\'envoi de l\'email.')
             return redirect('umm:email_members_success')
