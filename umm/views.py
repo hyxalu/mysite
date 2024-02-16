@@ -102,19 +102,16 @@ def email_members(request):
                 users_other = [u for u in users if not p.match(u)]
                 print(users_other)
                 print(users_skynet)
-                #email = EmailMessage(
-                #    subject,
-                #    message,
-                #    from_email,
-                #    [],
-                #    users_other,
-                #    reply_to=["fabienne.dussenwart@gmail.com"])
-                #email.content_subtype = "html"
-                #email.send(True)
+                email = EmailMessage(
+                    subject,
+                    message,
+                    from_email,
+                    [],
+                    users_other,
+                    reply_to=["fabienne.dussenwart@gmail.com"])
+                email.content_subtype = "html"
+                email.send(True)
                 for singleEmail in users_skynet:
-                    print(settings.DJANGO_MAILGUN_API_KEY)
-                    print(settings.DJANGO_MAILGUN_SERVER_NAME)
-                    #send_mail(subject, plain_message, from_email, [singleEmail], fail_silently=False, html_message=message)
                     r = requests.post(
                         settings.DJANGO_MAILGUN_SERVER_NAME + "/messages",
                         auth=("api", settings.DJANGO_MAILGUN_API_KEY),
